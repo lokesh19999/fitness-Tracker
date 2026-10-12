@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --radius-lg: 0.75rem;
+  --radius-md: 0.5625rem;
+  --radius-sm: 0.375rem;
+  --radius-xl: 1rem;
+}
+
+:root {
+  --background: oklch(98% 0.003 264);
+  --foreground: oklch(22% 0.02 264);
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(22% 0.02 264);
+  --popover: oklch(100% 0 0);
+  --popover-foreground: oklch(22% 0.02 264);
+  --primary: oklch(55% 0.16 292);
+  --primary-foreground: oklch(99% 0 0);
+  --secondary: oklch(95% 0.01 264);
+  --secondary-foreground: oklch(30% 0.03 264);
+  --muted: oklch(95% 0.01 264);
+  --muted-foreground: oklch(48% 0.02 264);
+  --accent: oklch(93% 0.03 292);
+  --accent-foreground: oklch(40% 0.12 292);
+  --destructive: oklch(58% 0.21 20);
+  --destructive-foreground: oklch(99% 0 0);
+  --border: oklch(90% 0.012 264);
+  --input: oklch(88% 0.015 264);
+  --ring: oklch(55% 0.16 292);
+  --chart-1: oklch(55% 0.16 292);
+  --chart-2: oklch(70% 0.14 60);
+  --chart-3: oklch(58% 0.12 210);
+  --chart-4: oklch(62% 0.16 160);
+  --chart-5: oklch(60% 0.2 355);
+}
+
+.dark {
+  --background: oklch(18% 0.015 264);
+  --foreground: oklch(93% 0.01 264);
+  --card: oklch(23% 0.015 264);
+  --card-foreground: oklch(93% 0.01 264);
+  --popover: oklch(21% 0.015 264);
+  --popover-foreground: oklch(93% 0.01 264);
+  --primary: oklch(70% 0.14 292);
+  --primary-foreground: oklch(20% 0.06 292);
+  --secondary: oklch(28% 0.015 264);
+  --secondary-foreground: oklch(90% 0.01 264);
+  --muted: oklch(28% 0.015 264);
+  --muted-foreground: oklch(70% 0.015 264);
+  --accent: oklch(32% 0.04 292);
+  --accent-foreground: oklch(90% 0.03 292);
+  --destructive: oklch(62% 0.22 20);
+  --destructive-foreground: oklch(98% 0 0);
+  --border: oklch(32% 0.015 264);
+  --input: oklch(33% 0.015 264);
+  --ring: oklch(70% 0.14 292);
+  --chart-1: oklch(70% 0.14 292);
+  --chart-2: oklch(78% 0.13 60);
+  --chart-3: oklch(66% 0.13 210);
+  --chart-4: oklch(70% 0.15 160);
+  --chart-5: oklch(68% 0.2 355);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply antialiased;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif;
+  }
+  /* Prevent unintended horizontal scroll on any screen. */
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
