@@ -105,4 +105,11 @@
   body {
     overflow-x: hidden;
   }
+  /* Form controls must be able to shrink inside grid/flex containers;
+     otherwise their intrinsic min-width overflows narrow (mobile) layouts. */
+  input,
+  textarea,
+  select {
+    min-width: 0;
+  }
 }

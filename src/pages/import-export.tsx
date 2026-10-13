@@ -222,9 +222,9 @@ export function ImportExportPage() {
                 <div className="grid gap-2 sm:grid-cols-2">
                   {FIELD_DEFS[target].map((def) => (
                     <div key={def.key} className="flex items-center gap-2 text-sm">
-                      <span className="w-40 shrink-0 text-muted-foreground">{def.label}</span>
+                      <span className="w-28 shrink-0 sm:w-40 text-muted-foreground">{def.label}</span>
                       <Select value={mapping[def.key] ?? '__none'} onValueChange={(v) => setMapping({ ...mapping, [def.key]: v === '__none' ? '' : v })}>
-                        <SelectTrigger className="h-9"><SelectValue placeholder="—" /></SelectTrigger>
+                        <SelectTrigger className="h-9 min-w-0"><SelectValue placeholder="—" /></SelectTrigger>
                         <SelectContent>
                           <SelectItem value="__none">Not mapped</SelectItem>
                           {(sheets[sheetName]?.headers ?? []).map((h) => <SelectItem key={h} value={h}>{h}</SelectItem>)}

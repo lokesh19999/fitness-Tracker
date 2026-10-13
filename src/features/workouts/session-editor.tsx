@@ -8,7 +8,6 @@ import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { Textarea } from '@/components/ui/textarea'
 import { useAuth } from '@/hooks/use-auth'
-import { cn } from '@/utils/cn'
 
 import {
   saveSessionDetails,
@@ -191,7 +190,9 @@ export function SessionEditor({
           <div key={exIndex} className="rounded-lg border p-3">
             <div className="flex flex-wrap items-center gap-2">
               <Input
-                className="h-9 flex-1 sm:max-w-xs"
+                aria-label={`Exercise ${exIndex + 1} name`}
+                placeholder="Exercise name"
+                className="h-9 basis-full min-w-0 sm:basis-auto sm:max-w-xs sm:flex-1"
                 value={exercise.exercise_name}
                 onChange={(e) => updateExercise(exIndex, { exercise_name: e.target.value })}
               />
@@ -199,7 +200,8 @@ export function SessionEditor({
                 <Label className="text-xs">RIR</Label>
                 <Input
                   type="number"
-                  className="h-9 w-16"
+                  aria-label={`Exercise ${exIndex + 1} RIR`}
+                  className="h-9 w-16 min-w-0"
                   value={exercise.rir ?? ''}
                   onChange={(e) => updateExercise(exIndex, { rir: e.target.value === '' ? null : Number(e.target.value) })}
                 />
@@ -212,7 +214,7 @@ export function SessionEditor({
                 />
                 Completed
               </label>
-              <Button variant="ghost" size="icon" onClick={() => removeExercise(exIndex)} aria-label="Remove exercise">
+              <Button variant="ghost" size="icon" onClick={() => removeExercise(exIndex)} aria-label="Remove exercise" className="ml-auto sm:ml-0">
                 <Trash2 className="h-4 w-4 text-destructive" />
               </Button>
             </div>
@@ -228,30 +230,38 @@ export function SessionEditor({
                 <span>Set</span><span>Weight (kg)</span><span>Reps</span><span />
               </div>
               {exercise.sets.map((set, setIndex) => (
-                <div key={setIndex} className={cn('grid grid-cols-[2rem_1fr_1fr_auto] items-center gap-2')}>
+                <div
+                  key={setIndex}
+                  className="grid grid-cols-[2rem_1fr_1fr] items-center gap-2 sm:grid-cols-[2rem_1fr_1fr_auto]"
+                >
                   <span className="text-sm text-muted-foreground">{set.set_number}</span>
                   <Input
                     type="number"
                     inputMode="decimal"
                     step="0.5"
-                    className="h-9"
+                    aria-label={`Set ${set.set_number} weight (kg)`}
+                    placeholder="kg"
+                    className="h-9 min-w-0"
                     value={set.weight_kg ?? ''}
                     onChange={(e) => updateSet(exIndex, setIndex, { weight_kg: e.target.value === '' ? null : Number(e.target.value) })}
                   />
                   <Input
                     type="number"
                     inputMode="numeric"
-                    className="h-9"
+                    aria-label={`Set ${set.set_number} reps`}
+                    placeholder="reps"
+                    className="h-9 min-w-0"
                     value={set.reps ?? ''}
                     onChange={(e) => updateSet(exIndex, setIndex, { reps: e.target.value === '' ? null : Number(e.target.value) })}
                   />
-                  <div className="flex items-center gap-1">
+                  <div className="col-span-3 flex items-center gap-1 sm:col-span-1">
                     <input
                       type="checkbox"
                       aria-label={`Set ${set.set_number} completed`}
                       checked={set.completed}
                       onChange={(e) => updateSet(exIndex, setIndex, { completed: e.target.checked })}
                     />
+                    <span className="text-xs text-muted-foreground sm:hidden">Completed</span>
                     <Button variant="ghost" size="icon" onClick={() => removeSet(exIndex, setIndex)} aria-label="Remove set">
                       <Trash2 className="h-3.5 w-3.5" />
                     </Button>

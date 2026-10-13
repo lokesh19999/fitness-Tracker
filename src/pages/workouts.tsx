@@ -89,7 +89,7 @@ export function WorkoutsPage() {
       {message ? <div className="rounded-lg border bg-accent/40 px-4 py-2 text-sm text-accent-foreground">{message}</div> : null}
 
       <Tabs defaultValue="log">
-        <TabsList>
+        <TabsList className="grid w-full grid-cols-2 sm:inline-flex sm:w-auto">
           <TabsTrigger value="log">Training log</TabsTrigger>
           <TabsTrigger value="templates">Weekly plan</TabsTrigger>
         </TabsList>
@@ -98,7 +98,7 @@ export function WorkoutsPage() {
           <div className="flex justify-end">
             <Dialog open={newOpen} onOpenChange={setNewOpen}>
               <DialogTrigger asChild>
-                <Button><CalendarPlus className="h-4 w-4" /> New session</Button>
+                <Button className="w-full sm:w-auto"><CalendarPlus className="h-4 w-4" /> New session</Button>
               </DialogTrigger>
               <DialogContent className="max-w-md">
                 <DialogHeader><DialogTitle>New workout session</DialogTitle></DialogHeader>
@@ -122,7 +122,7 @@ export function WorkoutsPage() {
                   <p className="text-xs text-muted-foreground">
                     Sessions are created as <strong>planned</strong>. They are never auto-marked complete.
                   </p>
-                  <Button onClick={() => void handleCreate()} disabled={creating}>Create session</Button>
+                  <Button onClick={() => void handleCreate()} disabled={creating} className="w-full sm:w-auto">Create session</Button>
                 </div>
               </DialogContent>
             </Dialog>
@@ -257,11 +257,11 @@ function TemplateExerciseRow({
   }
 
   return (
-    <div className="grid grid-cols-[1fr_4rem_5rem_4rem_auto] items-center gap-2">
-      <Input className="h-9" value={name} onChange={(e) => setName(e.target.value)} onBlur={() => void save()} />
-      <Input className="h-9" type="number" value={sets} onChange={(e) => setSets(e.target.value)} onBlur={() => void save()} />
-      <Input className="h-9" value={reps} placeholder="reps" onChange={(e) => setReps(e.target.value)} onBlur={() => void save()} />
-      <Input className="h-9" type="number" value={rir} placeholder="RIR" onChange={(e) => setRir(e.target.value)} onBlur={() => void save()} />
+    <div className="grid grid-cols-[1fr_1fr_1fr_auto] gap-2 sm:grid-cols-[1fr_4rem_5rem_4rem_auto] sm:items-center">
+      <Input aria-label="Exercise name" className="col-span-4 h-9 min-w-0 sm:col-span-1" value={name} onChange={(e) => setName(e.target.value)} onBlur={() => void save()} />
+      <Input aria-label="Default sets" className="h-9 min-w-0" type="number" placeholder="sets" value={sets} onChange={(e) => setSets(e.target.value)} onBlur={() => void save()} />
+      <Input aria-label="Default reps" className="h-9 min-w-0" value={reps} placeholder="reps" onChange={(e) => setReps(e.target.value)} onBlur={() => void save()} />
+      <Input aria-label="Target RIR" className="h-9 min-w-0" type="number" value={rir} placeholder="RIR" onChange={(e) => setRir(e.target.value)} onBlur={() => void save()} />
       <Button variant="ghost" size="icon" onClick={() => void remove()} aria-label="Remove exercise">
         <Trash2 className="h-4 w-4 text-destructive" />
       </Button>
@@ -293,7 +293,7 @@ function AddTemplateExercise({ templateId, onSaved }: { templateId: string; onSa
 
   return (
     <div className="flex gap-2">
-      <Input className="h-9" placeholder="Add custom exercise…" value={name} onChange={(e) => setName(e.target.value)} />
+      <Input className="h-9 min-w-0" placeholder="Add custom exercise…" value={name} onChange={(e) => setName(e.target.value)} />
       <Button size="sm" variant="outline" onClick={() => void add()}>
         <Plus className="h-4 w-4" /> Add
       </Button>

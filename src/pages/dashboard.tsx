@@ -89,9 +89,9 @@ export function DashboardPage() {
   return (
     <div className="space-y-4">
       <Card>
-        <CardContent className="flex flex-wrap items-end gap-3 p-4">
+        <CardContent className="grid gap-3 p-4 sm:flex sm:flex-wrap sm:items-end">
           <CalendarRange className="mb-2 hidden h-5 w-5 text-muted-foreground sm:block" />
-          <div className="grid flex-1 grid-cols-2 gap-3 sm:flex sm:flex-none sm:items-end">
+          <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-none sm:items-end">
             <div className="space-y-1.5">
               <Label htmlFor="from" className="text-xs">From</Label>
               <Input id="from" type="date" value={from} onChange={(e) => setFrom(e.target.value)} className="w-full sm:w-40" />
@@ -115,7 +115,7 @@ export function DashboardPage() {
               </SelectContent>
             </Select>
           </div>
-          <Button variant="outline" onClick={refresh} disabled={fetching} className="ml-auto">
+          <Button variant="outline" onClick={refresh} disabled={fetching} className="w-full sm:ml-auto sm:w-auto">
             <RefreshCw className={fetching ? 'h-4 w-4 animate-spin' : 'h-4 w-4'} /> Refresh
           </Button>
         </CardContent>

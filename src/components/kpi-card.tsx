@@ -27,16 +27,16 @@ export function KpiCard({
 
   return (
     <Card className={cn('overflow-hidden', className)}>
-      <CardContent className="flex flex-col gap-1 p-4">
-        <div className="flex items-center justify-between text-muted-foreground">
-          <span className="text-xs font-medium uppercase tracking-wide">{label}</span>
-          {icon}
+      <CardContent className="flex min-w-0 flex-col gap-1 p-4">
+        <div className="flex min-w-0 items-start justify-between gap-2 text-muted-foreground">
+          <span className="min-w-0 break-words text-xs font-medium uppercase tracking-wide">{label}</span>
+          {icon ? <span className="shrink-0">{icon}</span> : null}
         </div>
-        <div className="flex items-baseline gap-1">
-          <span className="text-2xl font-semibold tabular-nums">{value}</span>
+        <div className="flex min-w-0 flex-wrap items-baseline gap-1">
+          <span className="min-w-0 break-words text-xl font-semibold tabular-nums sm:text-2xl">{value}</span>
           {unit ? <span className="text-sm text-muted-foreground">{unit}</span> : null}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-0.5">
           {deltaLabel ? (
             <span
               className={cn(

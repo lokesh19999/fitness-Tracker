@@ -16,5 +16,9 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
     css: true,
+    env: {
+      VITE_SUPABASE_URL: 'https://your-project.supabase.co',
+      VITE_SUPABASE_ANON_KEY: 'your-anon-public-key',
+    },
   },
 })
